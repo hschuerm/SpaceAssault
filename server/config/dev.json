@@ -1,0 +1,17 @@
+{
+    "http": {
+        "port": 9000
+    },
+    "websocket": {
+        "cors": [
+            "http://localhost:3000"
+        ]
+    },
+    "database": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "root",
+        "password": "example",
+        "database": "SpaceAssault"
+    }
+}

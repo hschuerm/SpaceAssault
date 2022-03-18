@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "express": "^4.17.3",
+    "mysql": "^2.18.1",
+    "socket.io": "^4.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.11.0"
+  },
+  "name": "server",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Hendrik Schürmann, Louisa Unland",
+  "license": "MIT",
+  "private": true
+}
