@@ -28,7 +28,7 @@ function Planet(props) {
                     key={station.station_id}
                     user={user}
                     socket={socket}
-                    {...station}
+                    station={station}
                 />
             ))}
         </div>

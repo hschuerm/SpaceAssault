@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { styled } from '@mui/material/styles';
-import Planet from '../planet';
+import Planet from '../planet_orbit/';
 
 const Div = styled('div')``;
 const Img = styled('img')``;
