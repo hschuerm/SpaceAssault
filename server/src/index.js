@@ -3,8 +3,9 @@ const SetupServer = require('./setupServer');
 
 const UserEvents = require('./events/user');
 const SolarSystemEvents = require('./events/solarSystem');
+const StationAdministratorEvents = require('./events/stationAdministrator');
 
-const SolarSystem = require('./database/model/solarSystem');
+const SolarSystem = require('./database/models/solarSystem');
 
 connect(() => {
     const { socketServer } = SetupServer();
@@ -14,5 +15,6 @@ connect(() => {
 
         UserEvents(socketServer, socket, solar_system);
         SolarSystemEvents(socketServer, socket, solar_system);
+        StationAdministratorEvents(socketServer, socket);
     });
 });

@@ -12,7 +12,8 @@ const SHIP_Y_OFFSET = 30;
 const Img = styled('img')``;
 
 function SpaceStation(props) {
-    const { station_id, position_x, position_y, docked_ships, socket, user } = props;
+    const { station, socket, user } = props;
+    const { station_id, position_x, position_y, docked_ships } = station;
 
     const imagePath = `./assets/space_station/${station_id}.png`;
 
@@ -23,7 +24,6 @@ function SpaceStation(props) {
         });
     };
 
-    const loggedInUserIsDocked = Boolean(docked_ships.find(ship => ship.user && user.user_id === ship.user.user_id));
 
     return (
         <div onClick={handleClick}>
@@ -44,16 +44,22 @@ function SpaceStation(props) {
                     top={(index + 1) * SHIP_Y_OFFSET + position_y}
                 />
             ))}
-            {loggedInUserIsDocked && <StationAdministrator />}
+            <StationAdministrator
+                station={station}
+                user={user}
+                socket={socket}
+            />
         </div>
     );
 }
 
 SpaceStation.propTypes = {
-    station_id: PropTypes.number,
-    position_x: PropTypes.number,
-    position_y: PropTypes.number,
-    docked_ships: PropTypes.array,
+    station: PropTypes.shape({
+        station_id: PropTypes.number,
+        position_x: PropTypes.number,
+        position_y: PropTypes.number,
+        docked_ships: PropTypes.array
+    }),
     user: PropTypes.object,
     socket: PropTypes.object
 };

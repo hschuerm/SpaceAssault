@@ -6,8 +6,8 @@ import { Fab } from '@mui/material';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 
 function QuestBook(props) {
-    const { socket, station_adminstrator } = props;
-    const { station_administrator_id } = station_adminstrator;
+    const { socket, station_administrator } = props;
+    const { station_administrator_id } = station_administrator;
 
     const handleClick = () => {
         socket.emit('load quests', station_administrator_id);
@@ -29,7 +29,7 @@ function QuestBook(props) {
 
 QuestBook.propTypes = {
     socket: PropTypes.object,
-    station_adminstrator: PropTypes.object.isRequired
+    station_administrator: PropTypes.object.isRequired
 };
 
 export default QuestBook;

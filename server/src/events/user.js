@@ -1,4 +1,4 @@
-const UserModel = require('../database/model/user');
+const UserModel = require('../database/models/user');
 
 function userEvents(socketServer, socket, solar_system) {
 
