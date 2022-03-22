@@ -66,6 +66,10 @@ class UserModel extends BaseModel {
         });
     }
 
+    acceptsQquest(user_id, quest_id, callback) {
+        this.executeQuery("userAcceptsQuest", [user_id, quest_id], callback);
+    }
+
 }
 
 module.exports = UserModel;

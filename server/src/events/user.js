@@ -58,6 +58,18 @@ function userEvents(socketServer, socket, solar_system) {
             }, 1);
         });
     });
+
+    socket.on('user accepts quest', ({ user_id, quest_id }) => {
+        const user = new UserModel();
+        user.acceptsQquest(user_id, quest_id, (err) => {
+            if (err) {
+
+                console.error(err.message);
+
+                return;
+            }
+        });
+    });
 };
 
 module.exports = userEvents;

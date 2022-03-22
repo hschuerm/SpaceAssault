@@ -1,5 +1,6 @@
 SELECT
     po.planet_orbit_id,
+    po.name AS po_name,
     po.position_x AS po_position_x,
     po.position_y AS po_position_y,
 

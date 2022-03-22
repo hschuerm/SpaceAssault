@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Erstellungszeit: 22. Mrz 2022 um 08:34
+-- Erstellungszeit: 22. Mrz 2022 um 20:47
 -- Server-Version: 10.7.3-MariaDB-1:10.7.3+maria~focal
 -- PHP-Version: 8.0.16
 
@@ -104,7 +104,8 @@ CREATE TABLE `planet_orbit` (
 --
 
 INSERT INTO `planet_orbit` (`planet_orbit_id`, `name`, `position_x`, `position_y`, `solar_system_id`) VALUES
-(1, 'Erde', 100, 100, 1);
+(1, 'Erde', 100, 100, 1),
+(2, 'Saturn', 1000, 500, 1);
 
 -- --------------------------------------------------------
 
@@ -119,6 +120,14 @@ CREATE TABLE `quest` (
   `reward` int(11) NOT NULL DEFAULT 0,
   `station_administrator_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `quest`
+--
+
+INSERT INTO `quest` (`quest_id`, `title`, `description`, `reward`, `station_administrator_id`) VALUES
+(1, 'Rohstoff-Lieferung', 'Bringe 25T Iridium zur Station Terra 5 im Orbit des Planeten Erde.', 5, 3),
+(2, 'Rohstoff-Lieferung', 'Bringe 35T Iridium zur Station RWQ im Orbit des Planeten Erde.', 7, 2);
 
 -- --------------------------------------------------------
 
@@ -197,8 +206,8 @@ CREATE TABLE `spaceship` (
 --
 
 INSERT INTO `spaceship` (`spaceship_id`, `name`, `hitpoints`, `weapon_slots`, `shield_slots`, `extra_slots`, `user_id`, `npc_id`, `station_id`) VALUES
-(1, 'Space Raider von Hendrik', 0, 0, 0, 0, 4420, NULL, 2),
-(14, 'Space Raider von Louisa', 0, 0, 0, 0, 4448, NULL, 1);
+(1, 'Space Raider von Hendrik', 0, 0, 0, 0, 1, NULL, 2),
+(2, 'Space Raider von Louisa', 0, 0, 0, 0, 2, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -219,9 +228,12 @@ CREATE TABLE `station` (
 --
 
 INSERT INTO `station` (`station_id`, `name`, `position_x`, `position_y`, `planet_orbit_id`) VALUES
-(1, '', 300, 50, 1),
-(2, '', 20, 100, 1),
-(3, '', 250, 350, 1);
+(1, 'RWQ', 300, 50, 1),
+(2, 'Zeus', 20, 100, 1),
+(3, 'Tera 5', 290, 273, 1),
+(4, 'ISS', 100, 300, 1),
+(5, 'Gtte', 1150, 429, 2),
+(6, 'Saturn 1', 990, 627, 2);
 
 -- --------------------------------------------------------
 
@@ -243,7 +255,8 @@ CREATE TABLE `station_administrator` (
 INSERT INTO `station_administrator` (`station_administrator_id`, `name`, `station_id`, `race_id`) VALUES
 (1, 'Ralf', 1, NULL),
 (2, 'Vanessa', 2, NULL),
-(3, 'Klaus', 3, NULL);
+(3, 'Klaus', 3, NULL),
+(4, 'Sara', 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -264,8 +277,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `game_character_id`) VALUES
-(4420, 'Hendrik', '12345', 'undefined', NULL),
-(4448, 'Louisa', '1', 'undefined', NULL);
+(1, 'Hendrik', '12345', 'undefined', NULL),
+(2, 'Louisa', '1', 'undefined', NULL);
 
 --
 -- Trigger `user`
@@ -430,13 +443,13 @@ ALTER TABLE `npc`
 -- AUTO_INCREMENT für Tabelle `planet_orbit`
 --
 ALTER TABLE `planet_orbit`
-  MODIFY `planet_orbit_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `planet_orbit_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `quest`
 --
 ALTER TABLE `quest`
-  MODIFY `quest_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `quest_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `race`
@@ -454,25 +467,25 @@ ALTER TABLE `solar_system`
 -- AUTO_INCREMENT für Tabelle `spaceship`
 --
 ALTER TABLE `spaceship`
-  MODIFY `spaceship_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `spaceship_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `station`
 --
 ALTER TABLE `station`
-  MODIFY `station_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `station_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT für Tabelle `station_administrator`
 --
 ALTER TABLE `station_administrator`
-  MODIFY `station_administrator_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `station_administrator_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4449;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints der exportierten Tabellen

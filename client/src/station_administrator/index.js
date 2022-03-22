@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { styled } from '@mui/material/styles';
@@ -13,6 +13,7 @@ function StationAdministrator(props) {
     const { socket, user, station } = props;
 
     const [stationAdministrator, setStationAdministrator] = useState();
+    const [anchorEl, setAnchorEl] = useState(null);
 
     useEffect(() => {
         if (socket) {
@@ -33,39 +34,48 @@ function StationAdministrator(props) {
 
     const imagePath = `./assets/station_administrator/${station_administrator_id}.png`;
 
-    const handleClick = () => {
-        // socket.emit('user changed station', {
-        //     user_id: user.user_id,
-        //     new_station_id: station_id
-        // });
+    const handleClick = ({ currentTarget }) => {
+        setAnchorEl(currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
     };
 
     return (
-        <Div
-            onClick={handleClick}
-            sx={{
-                position: 'fixed',
-                bottom: 16,
-                right: 16,
-                backgroundColor: "#dadada94",
-                borderRadius: '20%',
-                ":hover": {
-                    backgroundColor: "#dadadad9",
-                    cursor: "pointer"
-                }
-            }}
-        >
-            <Img
-                src={imagePath}
+        <Fragment>
+            <Div
+                onClick={handleClick}
                 sx={{
-                    height: 80,
+                    position: 'fixed',
+                    bottom: 16,
+                    right: 16,
+                    backgroundColor: "#dadada94",
+                    borderRadius: '20%',
+                    ":hover": {
+                        backgroundColor: "#dadadad9",
+                        cursor: "pointer"
+                    }
                 }}
+            >
+                <Img
+                    src={imagePath}
+                    sx={{
+                        height: 80,
+                    }}
+                />
+                <Typography align="center">
+                    {sa_name}
+                </Typography>
+            </Div>
+            <StationAdminstatorMenu
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                socket={socket}
+                user={user}
+                stationAdministrator={stationAdministrator}
             />
-            <Typography align="center">
-                {sa_name}
-            </Typography>
-            <StationAdminstatorMenu />
-        </Div>
+        </Fragment>
     );
 }
 

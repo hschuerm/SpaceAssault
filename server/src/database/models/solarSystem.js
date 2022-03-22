@@ -19,7 +19,7 @@ class SolarSystemModel extends BaseModel {
                     if (row.planet_orbit_id !== null && typeof planetRegister[row.planet_orbit_id] === 'undefined') {
                         planetRegister[row.planet_orbit_id] = {
                             planet_orbit_id: row.planet_orbit_id,
-                            name: row.name,
+                            name: row.po_name,
                             position_x: row.po_position_x,
                             position_y: row.po_position_y,
                             stations: new Array()
@@ -31,6 +31,7 @@ class SolarSystemModel extends BaseModel {
                     if (row.station_id !== null && typeof stationsRegister[row.station_id] === 'undefined') {
                         stationsRegister[row.station_id] = {
                             station_id: row.station_id,
+                            name: row.s_name,
                             position_x: row.s_position_x,
                             position_y: row.s_position_y,
                             docked_ships: new Array()
