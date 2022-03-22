@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { styled } from '@mui/material/styles';
+
 import Fullscreen from './fullscreen';
+import QuestInfo from './questInfo';
 
 const Div = styled('div')``;
 
-function ControlPanel() {
+function ControlPanel(props) {
+    const { user, socket } = props;
+
     return (
         <Div
             sx={{
@@ -14,9 +19,15 @@ function ControlPanel() {
                 right: 2
             }}
         >
+            <QuestInfo user={user} socket={socket} />
             <Fullscreen />
         </Div>
     );
 }
 
-export default ControlPanel
+ControlPanel.propTypes = {
+    user: PropTypes.object,
+    socket: PropTypes.object
+};
+
+export default ControlPanel;

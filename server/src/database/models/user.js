@@ -70,6 +70,9 @@ class UserModel extends BaseModel {
         this.executeQuery("userAcceptsQuest", [user_id, quest_id], callback);
     }
 
+    loadAcceptedQuests(user_id, callback) {
+        this.executeQuery("acceptedQuestsOfUser", [user_id], callback);
+    }
 }
 
 module.exports = UserModel;

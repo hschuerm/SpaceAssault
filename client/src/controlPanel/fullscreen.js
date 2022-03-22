@@ -6,10 +6,8 @@ import FullscreenIcon from '@mui/icons-material/Fullscreen';
 function Fullscreen() {
 
     const handleFullscreenClick = () => {
-        const elem = document.getElementById("App");
-
         if (!document.fullscreenElement) {
-            elem.requestFullscreen();
+            document.documentElement.requestFullscreen();
         } else {
             if (document.exitFullscreen) {
                 document.exitFullscreen();

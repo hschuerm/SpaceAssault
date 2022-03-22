@@ -68,6 +68,31 @@ function userEvents(socketServer, socket, solar_system) {
 
                 return;
             }
+
+            user.loadAcceptedQuests(user_id, (err, result) => {
+                if (err) {
+
+                    console.error(err.message);
+
+                    return;
+                }
+
+                socketServer.emit(`quests of user ${user_id}`, result);
+            });
+        });
+    });
+
+    socket.on('load accepted quests', (user_id) => {
+        const user = new UserModel();
+        user.loadAcceptedQuests(user_id, (err, result) => {
+            if (err) {
+
+                console.error(err.message);
+
+                return;
+            }
+
+            socket.emit(`quests of user ${user_id}`, result);
         });
     });
 };

@@ -62,7 +62,10 @@ function App(props) {
                 socket={socket}
                 user={user}
             />
-            <ControlPanel />
+            <ControlPanel
+                user={user}
+                socket={socket}
+            />
         </div>
     );
 };
