@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Erstellungszeit: 22. Mrz 2022 um 20:47
+-- Erstellungszeit: 22. Mrz 2022 um 21:50
 -- Server-Version: 10.7.3-MariaDB-1:10.7.3+maria~focal
 -- PHP-Version: 8.0.16
 
@@ -127,7 +127,9 @@ CREATE TABLE `quest` (
 
 INSERT INTO `quest` (`quest_id`, `title`, `description`, `reward`, `station_administrator_id`) VALUES
 (1, 'Rohstoff-Lieferung', 'Bringe 25T Iridium zur Station Terra 5 im Orbit des Planeten Erde.', 5, 3),
-(2, 'Rohstoff-Lieferung', 'Bringe 35T Iridium zur Station RWQ im Orbit des Planeten Erde.', 7, 2);
+(2, 'Rohstoff-Lieferung', 'Bringe 35T Iridium zur Station RWQ im Orbit des Planeten Erde.', 7, 2),
+(3, 'Lieferung zu Zeus', 'Bringe 55T Iridium zur Station Zeus im Orbit des Planeten Erde.', 7, 2),
+(4, 'Rohstoffe zu Saturn 1', 'Bringe 55T Iridium zur Station Saturn 1 im Orbit des Planeten Saturn.', 14, 2);
 
 -- --------------------------------------------------------
 
@@ -233,7 +235,9 @@ INSERT INTO `station` (`station_id`, `name`, `position_x`, `position_y`, `planet
 (3, 'Tera 5', 290, 273, 1),
 (4, 'ISS', 100, 300, 1),
 (5, 'Gtte', 1150, 429, 2),
-(6, 'Saturn 1', 990, 627, 2);
+(6, 'Saturn 1', 990, 627, 2),
+(7, 'Saturn 2', 900, 427, 2),
+(8, 'Trre R`', 1250, 560, 2);
 
 -- --------------------------------------------------------
 
@@ -256,7 +260,11 @@ INSERT INTO `station_administrator` (`station_administrator_id`, `name`, `statio
 (1, 'Ralf', 1, NULL),
 (2, 'Vanessa', 2, NULL),
 (3, 'Klaus', 3, NULL),
-(4, 'Sara', 4, NULL);
+(4, 'Sara', 4, NULL),
+(5, 'Emma', 5, NULL),
+(6, 'Mech', 6, NULL),
+(7, 'Tara', 7, NULL),
+(8, 'Vader', 8, NULL);
 
 -- --------------------------------------------------------
 
@@ -280,15 +288,6 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `game_character_
 (1, 'Hendrik', '12345', 'undefined', NULL),
 (2, 'Louisa', '1', 'undefined', NULL);
 
---
--- Trigger `user`
---
-DELIMITER $$
-CREATE TRIGGER `create spaceship after register` AFTER INSERT ON `user` FOR EACH ROW INSERT INTO spaceship (name, station_id, user_id) VALUES 
-(CONCAT('Space Raider von ', NEW.username), 1, NEW.user_id)
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
@@ -299,6 +298,14 @@ CREATE TABLE `user_quest` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `quest_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `user_quest`
+--
+
+INSERT INTO `user_quest` (`user_id`, `quest_id`) VALUES
+(1, 2),
+(1, 3);
 
 --
 -- Indizes der exportierten Tabellen
@@ -449,7 +456,7 @@ ALTER TABLE `planet_orbit`
 -- AUTO_INCREMENT für Tabelle `quest`
 --
 ALTER TABLE `quest`
-  MODIFY `quest_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `quest_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `race`
@@ -473,13 +480,13 @@ ALTER TABLE `spaceship`
 -- AUTO_INCREMENT für Tabelle `station`
 --
 ALTER TABLE `station`
-  MODIFY `station_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `station_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT für Tabelle `station_administrator`
 --
 ALTER TABLE `station_administrator`
-  MODIFY `station_administrator_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `station_administrator_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT für Tabelle `user`
