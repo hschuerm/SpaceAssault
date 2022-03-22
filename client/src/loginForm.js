@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { styled } from '@mui/material/styles';
-import { Button, Checkbox, Container, Divider, FormControlLabel, TextField, Typography } from '@mui/material';
+import { Button, Container, Divider, Link, TextField, Typography } from '@mui/material';
+
+import RegisterForm from './registerForm';
 
 const Form = styled('form')``;
 
 function LoginForm(props) {
     const { onLogin, onRegister } = props;
 
+    const [dialogOpen, setDialogOpen] = useState(false);
+
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
-        const { target: { username, password, register } } = evt;
+        const { target: { username, password } } = evt;
 
-        if (register.checked) {
-            onRegister(username.value, password.value);
-        } else {
-            onLogin(username.value, password.value);
-        }
+        onLogin(username.value, password.value);
+    };
 
+    const handleDialogClose = () => {
+        setDialogOpen(false);
+    };
+
+    const handleLinkClick = () => {
+        setDialogOpen(true);
     };
 
     return (
@@ -60,17 +67,30 @@ function LoginForm(props) {
                     type="password"
                     label="password"
                     name="password"
-                />
-                <FormControlLabel
-                    control={
-                        <Checkbox name="register" />
-                    }
-                    label="neu registrieren"
+                    sx={{
+                        marginTop: 1,
+                        marginBottom: 2
+                    }}
                 />
                 <Button type="submit" variant="contained">
-                    Absenden
+                    Login
                 </Button>
             </Form>
+            <Link
+                component="button"
+                underline="hover"
+                onClick={handleLinkClick}
+                sx={{
+                    marginTop: 1
+                }}
+            >
+                Noch kein Account? Hier Registrieren
+            </Link>
+            <RegisterForm
+                onRegister={onRegister}
+                openDialog={dialogOpen}
+                onClose={handleDialogClose}
+            />
         </Container>
     );
 }

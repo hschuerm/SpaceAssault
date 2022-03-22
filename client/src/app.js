@@ -40,8 +40,8 @@ function App(props) {
         socket.emit('login', { username, password });
     };
 
-    const handleRegister = (username, password) => {
-        socket.emit('register', { username, password });
+    const handleRegister = (username, password, email) => {
+        socket.emit('register', { username, password, email });
     };
 
     if (!user) {

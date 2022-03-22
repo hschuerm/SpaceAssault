@@ -2,7 +2,7 @@ const UserModel = require('../database/models/user');
 
 function userEvents(socketServer, socket, solar_system) {
 
-    socket.on('register', ({ username, password, email }) => {
+    socket.on('register', ({ username, password, email = null }) => {
         const user = new UserModel(username);
         user.register(password, email, () => {
             solar_system.getContent((err, content) => {
