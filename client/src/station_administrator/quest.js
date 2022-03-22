@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Box, Button, Divider, Typography } from '@mui/material';
+import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Button, Divider, Typography } from '@mui/material';
 
 function Quest(props) {
     const { quest, onAccept } = props;
@@ -17,15 +17,9 @@ function Quest(props) {
                 <Typography variant="h5">{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <Box
-                    sx={{
-                        backgroundColor: "grey[500]"
-                    }}
-                >
-                    <Typography>
-                        {description}
-                    </Typography>
-                </Box>
+                <Typography>
+                    {description}
+                </Typography>
                 <Divider sx={{ marginTop: 3, marginBottom: 1, marginRight: '260px' }} />
                 <Typography>
                     Belohnung: {reward} Punkte

@@ -4,6 +4,7 @@ import IoWebsocket from 'socket.io-client';
 
 import SolarSystem from './solarSystem';
 import LoginForm from './loginForm';
+import ControlPanel from './controlPanel';
 
 function App(props) {
     const { config } = props;
@@ -55,12 +56,13 @@ function App(props) {
     }
 
     return (
-        <div className="App">
+        <div id="App">
             <SolarSystem
                 {...solarSystem}
                 socket={socket}
                 user={user}
             />
+            <ControlPanel />
         </div>
     );
 };

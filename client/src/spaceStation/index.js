@@ -41,7 +41,8 @@ function SpaceStation(props) {
             sx={{
                 position: 'absolute',
                 top: position_y,
-                left: position_x
+                left: position_x,
+                cursor: "pointer"
             }}
             onClick={handleClick}
         >
