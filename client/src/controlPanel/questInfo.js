@@ -2,8 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { styled } from '@mui/material/styles';
-import { IconButton, List, ListItem, ListItemText, Paper, Popper, Typography } from '@mui/material';
-import InfoIcon from '@mui/icons-material/Info';
+import { Badge, IconButton, List, ListItem, ListItemText, Paper, Popper, Typography } from '@mui/material';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import CancelIcon from '@mui/icons-material/Cancel';
 
 const Div = styled('div')``;
@@ -40,7 +40,16 @@ function QuestInfo(props) {
             <IconButton
                 onClick={handleClick}
             >
-                <InfoIcon />
+                <Badge
+                    badgeContent={acceptedQuests.length}
+                    color="primary"
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                >
+                    <ListAltIcon />
+                </Badge>
             </IconButton>
             <Popper open={popperOpen} anchorEl={anchorEl}>
                 <Paper square sx={{ padding: 2 }}>

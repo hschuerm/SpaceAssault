@@ -67,14 +67,14 @@ function LoginForm(props) {
                     <TextField
                         required
                         fullWidth
-                        label="username"
+                        label="Benutzername"
                         name="username"
                     />
                     <TextField
                         required
                         fullWidth
                         type="password"
-                        label="password"
+                        label="Passwort"
                         name="password"
                         sx={{
                             marginTop: 1,
