@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database
--- Erstellungszeit: 22. Mrz 2022 um 21:50
+-- Erstellungszeit: 23. Mrz 2022 um 07:49
 -- Server-Version: 10.7.3-MariaDB-1:10.7.3+maria~focal
 -- PHP-Version: 8.0.16
 
@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 -- Tabellenstruktur für Tabelle `equipment`
 --
 
+DROP TABLE IF EXISTS `equipment`;
 CREATE TABLE `equipment` (
   `equipment_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -44,6 +45,7 @@ CREATE TABLE `equipment` (
 -- Tabellenstruktur für Tabelle `equipment_npc`
 --
 
+DROP TABLE IF EXISTS `equipment_npc`;
 CREATE TABLE `equipment_npc` (
   `equipment_id` int(10) UNSIGNED NOT NULL,
   `npc_id` int(10) UNSIGNED NOT NULL
@@ -55,6 +57,7 @@ CREATE TABLE `equipment_npc` (
 -- Tabellenstruktur für Tabelle `game_character`
 --
 
+DROP TABLE IF EXISTS `game_character`;
 CREATE TABLE `game_character` (
   `game_character_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -67,6 +70,7 @@ CREATE TABLE `game_character` (
 -- Tabellenstruktur für Tabelle `inventory`
 --
 
+DROP TABLE IF EXISTS `inventory`;
 CREATE TABLE `inventory` (
   `spaceship_id` int(10) UNSIGNED NOT NULL,
   `equipment_id` int(10) UNSIGNED NOT NULL,
@@ -79,6 +83,7 @@ CREATE TABLE `inventory` (
 -- Tabellenstruktur für Tabelle `npc`
 --
 
+DROP TABLE IF EXISTS `npc`;
 CREATE TABLE `npc` (
   `npc_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -91,6 +96,7 @@ CREATE TABLE `npc` (
 -- Tabellenstruktur für Tabelle `planet_orbit`
 --
 
+DROP TABLE IF EXISTS `planet_orbit`;
 CREATE TABLE `planet_orbit` (
   `planet_orbit_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -113,6 +119,7 @@ INSERT INTO `planet_orbit` (`planet_orbit_id`, `name`, `position_x`, `position_y
 -- Tabellenstruktur für Tabelle `quest`
 --
 
+DROP TABLE IF EXISTS `quest`;
 CREATE TABLE `quest` (
   `quest_id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -137,6 +144,7 @@ INSERT INTO `quest` (`quest_id`, `title`, `description`, `reward`, `station_admi
 -- Tabellenstruktur für Tabelle `race`
 --
 
+DROP TABLE IF EXISTS `race`;
 CREATE TABLE `race` (
   `race_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL
@@ -148,6 +156,7 @@ CREATE TABLE `race` (
 -- Tabellenstruktur für Tabelle `reputation`
 --
 
+DROP TABLE IF EXISTS `reputation`;
 CREATE TABLE `reputation` (
   `race_id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
@@ -160,6 +169,7 @@ CREATE TABLE `reputation` (
 -- Tabellenstruktur für Tabelle `shop`
 --
 
+DROP TABLE IF EXISTS `shop`;
 CREATE TABLE `shop` (
   `station_id` int(10) UNSIGNED NOT NULL,
   `equipment_id` int(10) UNSIGNED NOT NULL,
@@ -173,6 +183,7 @@ CREATE TABLE `shop` (
 -- Tabellenstruktur für Tabelle `solar_system`
 --
 
+DROP TABLE IF EXISTS `solar_system`;
 CREATE TABLE `solar_system` (
   `solar_system_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) DEFAULT NULL
@@ -191,6 +202,7 @@ INSERT INTO `solar_system` (`solar_system_id`, `name`) VALUES
 -- Tabellenstruktur für Tabelle `spaceship`
 --
 
+DROP TABLE IF EXISTS `spaceship`;
 CREATE TABLE `spaceship` (
   `spaceship_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -217,6 +229,7 @@ INSERT INTO `spaceship` (`spaceship_id`, `name`, `hitpoints`, `weapon_slots`, `s
 -- Tabellenstruktur für Tabelle `station`
 --
 
+DROP TABLE IF EXISTS `station`;
 CREATE TABLE `station` (
   `station_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -245,6 +258,7 @@ INSERT INTO `station` (`station_id`, `name`, `position_x`, `position_y`, `planet
 -- Tabellenstruktur für Tabelle `station_administrator`
 --
 
+DROP TABLE IF EXISTS `station_administrator`;
 CREATE TABLE `station_administrator` (
   `station_administrator_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -272,6 +286,7 @@ INSERT INTO `station_administrator` (`station_administrator_id`, `name`, `statio
 -- Tabellenstruktur für Tabelle `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -288,12 +303,23 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `game_character_
 (1, 'Hendrik', '12345', 'undefined', NULL),
 (2, 'Louisa', '1', 'undefined', NULL);
 
+--
+-- Trigger `user`
+--
+DROP TRIGGER IF EXISTS `create spaceship after register`;
+DELIMITER $$
+CREATE TRIGGER `create spaceship after register` AFTER INSERT ON `user` FOR EACH ROW INSERT INTO spaceship (name, station_id, user_id) VALUES 
+(CONCAT('Space Raider von ', NEW.username), 1, NEW.user_id)
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `user_quest`
 --
 
+DROP TABLE IF EXISTS `user_quest`;
 CREATE TABLE `user_quest` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `quest_id` int(10) UNSIGNED NOT NULL
@@ -304,8 +330,10 @@ CREATE TABLE `user_quest` (
 --
 
 INSERT INTO `user_quest` (`user_id`, `quest_id`) VALUES
+(1, 1),
 (1, 2),
-(1, 3);
+(1, 3),
+(1, 4);
 
 --
 -- Indizes der exportierten Tabellen
