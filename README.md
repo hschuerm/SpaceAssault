@@ -13,7 +13,7 @@ Das Datenbank-System ist nicht Bestandteil dieses Repositories und wird vorrausg
 
 ## Installation
 1. dieses Repository herunterladen
-2. Datenbank mit [SQL-Script](https://github.com/hendrik-Sch/SpaceAssault/blob/master/server/initialise%20database%20Space%20Assault.sql) initalisieren
+2. Datenbank mit [SQL-Script](https://github.com/hendrik-Sch/SpaceAssault/blob/master/server/initialise%20database%20Space%20Assault.sql) initialisieren
 3. [Konfiguration](#configuration) anpassen
 4. Terminal öffnen
 5. in das Verzeichnis *client* wechseln
