@@ -41,7 +41,7 @@ Das Datenbank-System ist nicht Bestandteil dieses Repositories und wird vorrausg
   npm run start
   ```
 
-## Start des Clients im Entwicklungmodus
+## Start des Clients im Entwicklungsmodus
 1. Terminal öffnen
 2. in das Verzeichnis *client* wechseln
   ```sh
