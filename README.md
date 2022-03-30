@@ -62,9 +62,9 @@ Ort der Konfigurationsdatei: `/server/config/dev.json`
 | Parameter | Bedeutung |
 |---|---|
 | http.port | Port, auf den die Serveranwendung horcht und auch den Client bereitstellt |
-| websocket | Konfigurationen für den Websocket (s. [socket.io](https://socket.io/docs/v4/server-options/) für weitere Konfigurationsmöglichkeiten) |
+| websocket | Konfigurationen des Websockets (s. [socket.io](https://socket.io/docs/v4/server-options/) für weitere Konfigurationsmöglichkeiten) |
 | websocket.cors | Eine Liste von erlaubten Quell-URLs |
-| database | Konfigurationen für den Datenbank-Connectors [mysql](https://github.com/mysqljs/mysql#connection-options) |
+| database | Konfigurationen des Datenbank-Connectors (s. [mysql](https://github.com/mysqljs/mysql#connection-options) für weitere Konfigurationsmöglichkeiten) |
 | database.host | Der Hostname des Datenbank-Servers, mit der man sich verbinden möchte (Default: localhost) |
 | database.port | Der Port des Datenbank-Servers, mit der man sich verbinden möchte (Default: 3306) |
 | database.user | Der MySQL Benutzer |
