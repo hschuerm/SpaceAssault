@@ -12,7 +12,7 @@ Das Datenbank-System ist nicht Bestandteil dieses Repositories und wird vorrausg
 * Endgeräte mit dem Chrome oder Safari Webbrowser (andere Browser mögen auch funktionieren, sind allerdings nicht getestet)
 
 ## Installation
-1. dieses Repository herunterladen
+1. dieses [Repository](https://github.com/hendrik-Sch/SpaceAssault) herunterladen
 2. Datenbank mit [SQL-Script](https://github.com/hendrik-Sch/SpaceAssault/blob/master/server/initialise%20database%20Space%20Assault.sql) initialisieren
 3. [Konfiguration](#configuration) anpassen
 4. Terminal öffnen
